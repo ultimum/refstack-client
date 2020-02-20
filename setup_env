@@ -101,10 +101,19 @@ if [ -n "$(command -v apt-get)" ]; then
 elif [ -n "$(command -v yum)" ]; then
     # For yum-based distributions (RHEL, Centos)
     # If we run script in container we need sudo
+    DNF_COMMAND=yum
     if [ ! -f sudo ]; then
-        yum -y install sudo
+        ${DNF_COMMAND} -y install sudo
     fi
-    sudo yum -y install git
+    sudo ${DNF_COMMAND} -y install git
+elif [ -n "$(command -v dnf)" ]; then
+    # For dnf-based distributions (Centos>8, Fedora)
+    # If we run script in container we need sudo
+    DNF_COMMAND=dnf
+    if [ ! -f sudo ]; then
+        ${DNF_COMMAND} -y install sudo
+    fi
+    sudo ${DNF_COMMAND} -y install git
 elif [ -n "$(command -v zypper)" ]; then
     # For zypper-based distributions (openSUSE, SELS)
     # If we run script in container we need sudo
@@ -116,7 +125,7 @@ elif [ -n "$(command -v zypper)" ]; then
     fi
     sudo zypper --non-interactive install git
 else
-    echo "Neither apt-get, nor yum, nor zypper found"
+    echo "Neither apt-get, nor yum, nor dnf, nor zypper found"
     exit 1
 fi
 
@@ -134,14 +143,14 @@ cd ${WORKDIR}
 if [ -n "$(command -v apt-get)" ]; then
     # For apt-get-based Linux distributions (Ubuntu, Debian)
     sudo apt-get -y install curl wget tar unzip python-dev build-essential libssl-dev libxslt-dev libsasl2-dev libffi-dev libbz2-dev libyaml-dev python3-dev
-elif [ -n "$(command -v yum)" ]; then
-    # For yum-based distributions (RHEL, Centos)
-    sudo yum -y install curl wget tar unzip make gcc gcc-c++ libffi-devel libxml2-devel bzip2-devel libxslt-devel openssl-devel
+elif [ -n "$DNF_COMMAND" -a -n "$(command -v ${DNF_COMMAND})" ]; then
+    # For yum/dnf-based distributions (RHEL, Centos)
+    sudo ${DNF_COMMAND} -y install curl wget tar unzip make gcc gcc-c++ libffi-devel libxml2-devel bzip2-devel libxslt-devel openssl-devel
     if [[ ${PY_VERSION::1} == "2" ]]; then
-        sudo yum -y install python-devel libyaml-devel
+        sudo ${DNF_COMMAND} -y install python-devel libyaml-devel
     else
         # python3 dependencies
-        sudo yum -y install python3-devel
+        sudo ${DNF_COMMAND} -y install python3-devel
     fi
 elif [ -n "$(command -v zypper)" ]; then
     # For zypper-based distributions (openSUSE, SELS)
