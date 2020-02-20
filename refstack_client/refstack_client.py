@@ -738,6 +738,7 @@ def parse_cli_args(args=None):
 
     group.add_argument('-v', '--verbose',
                        action='count',
+                       default=0,
                        help='Show verbose output.')
 
     shared_args.add_argument('-y',
