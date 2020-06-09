@@ -91,7 +91,7 @@ Work Items
 Dependencies
 ============
 
-- Existing script: https://git.openstack.org/cgit/openstack/python-tempestconf
+- Existing script: https://opendev.org/osf/python-tempestconf
 
 Testing
 =======

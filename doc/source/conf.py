@@ -33,7 +33,7 @@ extensions = [
 ]
 
 # openstackdocstheme options
-repository_name = 'openstack/refstack-client'
+repository_name = 'osf/refstack-client'
 bug_project = '879'
 bug_tag = ''
 

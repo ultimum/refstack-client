@@ -1,15 +1,18 @@
 - project:
     templates:
-      - openstack-python-jobs
-      - openstack-python35-jobs
+      # Disable until fixed
+      # - openstack-python-jobs
+      # - openstack-python35-jobs
       - openstack-python36-jobs
       - openstack-python37-jobs
     check:
       jobs:
+        - openstack-tox-pep8
         - refstack-client-devstack-tempestconf
         - refstack-client-devstack-tempestconf-py3
     gate:
       jobs:
+        - openstack-tox-pep8
         - refstack-client-devstack-tempestconf
         - refstack-client-devstack-tempestconf-py3
 
@@ -19,15 +22,15 @@
     description: |
       Refstack client job for testing python-tempestconf and RefStack Integration
     required-projects:
-      - openstack/refstack-client
+      - osf/refstack-client
       - openstack/tempest
       - openstack/devstack
-      - openstack/python-tempestconf
+      - osf/python-tempestconf
     roles:
-      - zuul: openstack/python-tempestconf
+      - zuul: osf/python-tempestconf
       - zuul: openstack/tempest
       - zuul: openstack/devstack
-      - zuul: openstack/refstack-client
+      - zuul: osf/refstack-client
     run: playbooks/tempestconf-refstack-devstack.yaml
     vars:
       user: demo

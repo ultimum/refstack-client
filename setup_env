@@ -121,7 +121,7 @@ else
 fi
 
 if [ -z ${TEMPESTCONF_SOURCE} ]; then
-    git clone https://git.openstack.org/openstack/python-tempestconf.git ${TEMPESTCONF_DIR}
+    git clone https://git.openstack.org/osf/python-tempestconf.git ${TEMPESTCONF_DIR}
 fi
 
 git clone https://git.openstack.org/openstack/tempest.git ${TEMPEST_DIR}
