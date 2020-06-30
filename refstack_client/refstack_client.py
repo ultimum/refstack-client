@@ -354,7 +354,7 @@ class RefstackClient:
 
     def _form_result_content(self, cpid, duration, results):
         '''This method will create the content for the request. The spec at
-           'https://github.com/openstack/refstack/blob/master/specs/prior'
+           'https://opendev.org/osf/refstack/src/branch/master/specs/prior'
            '/implemented/api-v1.md'.
            defines the format expected by the API.'''
         content = {}
