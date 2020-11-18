@@ -50,7 +50,7 @@ class TempestSubunitTestResultPassOnly(testtools.TestResult):
         # Remove any [] from the test ID before appending it.
         # Will leave in any () for now as they are the only thing discerning
         # certain test cases.
-        test_result = {'name': str(re.sub('\[.*\]', '', testcase.id()))}
+        test_result = {'name': str(re.sub(r'\[.*\]', '', testcase.id()))}
         uuid = self.get_test_uuid(str(testcase.id()))
         if uuid:
             test_result['uuid'] = uuid

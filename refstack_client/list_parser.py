@@ -85,10 +85,10 @@ class TestListParser(object):
         for testcase in test_list:
             if testcase.startswith("tempest"):
                 # Search for any strings like '[smoke, gate]' in the test ID.
-                match = re.search('(\[.*\])', testcase)
+                match = re.search(r'(\[.*\])', testcase)
 
                 if match:
-                    testcase = re.sub('\[.*\]', '', testcase)
+                    testcase = re.sub(r'\[.*\]', '', testcase)
                     test_mappings[testcase] = match.group(1)
                 else:
                     test_mappings[testcase] = ""
@@ -195,16 +195,16 @@ class TestListParser(object):
         """This takes in a test list file, get normalized, and get whitelist
         regexes using full qualified test names (one per line).
         Ex:
-            'tempest.test1[id-2,gate]' -> tempest.test1\[
-            'tempest.test2[id-3,smoke](scenario)' -> tempest.test2\[
-            'tempest.test3[compute,id-4]' -> tempest.test3\[
+          'tempest.test1[id-2,gate]' -> tempest.test1\[ # noqa: W605
+          'tempest.test2[id-3,smoke](scenario)' -> tempest.test2\[ # noqa: W605
+          'tempest.test3[compute,id-4]' -> tempest.test3\[ # noqa: W605
 
         :param list_location: file path or URL location of list file
         """
         normalized_list = open(self.get_normalized_test_list(list_location),
                                'r').read()
         # Keep the names
-        tests_list = [re.sub("\[", "\[", test)
-                      for test in re.findall(".*\[", normalized_list)]
+        tests_list = [re.sub(r"\[", r"\[", test)
+                      for test in re.findall(r".*\[", normalized_list)]
 
         return self._write_normalized_test_list(tests_list)

@@ -330,7 +330,7 @@ class RefstackClient:
                 raise requests.exceptions.HTTPError(message)
             # If a Key or Index Error was raised, one of the expected keys or
             # indices for retrieving the identity service ID was not found.
-        except (KeyError, IndexError) as e:
+        except (KeyError, IndexError):
             self.logger.warning('Unable to retrieve CPID from Keystone %s '
                                 'catalog. The catalog or the identity '
                                 'service endpoint was not '

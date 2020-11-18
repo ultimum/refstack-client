@@ -181,7 +181,7 @@ class TestTestListParser(unittest.TestCase):
 
         expected_list = "tempest.test.one\[\n"\
                         "tempest.test.two\[\n"\
-                        "tempest.test.three\[\n"
+                        "tempest.test.three\[\n" # noqa W605
 
         tmpfile = tempfile.mktemp()
         with open(tmpfile, 'w') as f:
