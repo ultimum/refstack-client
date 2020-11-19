@@ -23,7 +23,7 @@ Environment setup
 We've created an "easy button" for Ubuntu, Centos, RHEL and openSUSE.
 
 1. Make sure you have ``git`` installed
-2. Get the refstack client: ``git clone https://github.com/openstack/refstack-client``
+2. Get the refstack client: ``git clone https://opendev.org/osf/refstack-client.git``
 3. Go into the refstack-client directory: ``cd refstack-client``
 4. Run the "easy button" setup: ``./setup_env``
 
@@ -141,7 +141,7 @@ Usage
          -i <path-to-private-key>
 
    Intructions for uploading data with signature can be found at
-   https://github.com/openstack/refstack/blob/master/doc/source/uploading_private_results.rst
+   https://opendev.org/osf/refstack/src/branch/master/doc/source/uploading_private_results.rst
 
 7. Create a JSON web token to use for authentication to your privately
    uploaded data
