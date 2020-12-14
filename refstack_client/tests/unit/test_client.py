@@ -118,13 +118,6 @@ class TestRefstackClient(unittest.TestCase):
         client._prep_test()
         self.assertEqual(client.logger.level, logging.WARNING)
 
-        args = rc.parse_cli_args(self.mock_argv(silent='-s'))
-        args = rc.parse_cli_args(self.mock_argv(verbose='-v'))
-        client = rc.RefstackClient(args)
-        client.tempest_dir = self.test_path
-        client._prep_test()
-        self.assertRaises(SystemExit, client.__init__(args))
-
     def test_get_next_stream_subunit_output_file(self):
         """
         Test getting the subunit file from an existing .testrepository
