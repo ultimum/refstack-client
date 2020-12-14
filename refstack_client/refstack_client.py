@@ -136,9 +136,9 @@ class RefstackClient:
         '''This method reads from the next-stream file in the .testrepository
            or .stestr directory according to Tempest version of the given
            Tempest path. The integer here is the name of the file where subunit
-           output will be saved to. It also check if the repository is
-           initialized and if not, initialize it'''
-        if os.path.exists(os.path.join(self.tempest_dir, '.stestr.conf')):
+           output will be saved to. It also checks if the repository is
+           initialized and if not, initializes it'''
+        if os.path.exists(os.path.join(tempest_dir, '.stestr.conf')):
             sub_dir = '.stestr'
             cmd = 'stestr'
         else:
