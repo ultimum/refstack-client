@@ -535,10 +535,14 @@ class RefstackClient:
             self.logger.info("Normalizing test list...")
             parser = TestListParser(os.path.abspath(self.tempest_dir),
                                     insecure=self.args.insecure)
-            # get whitelist
-            list_file = parser.create_whitelist(self.args.test_list)
+            # get include list
+            list_file = parser.create_include_list(self.args.test_list)
             if list_file:
                 if os.path.getsize(list_file) > 0:
+                    # TODO(kopecmartin) rename the below argument when
+                    # refstack-client uses tempest which contains the following
+                    # change in its code:
+                    # https://review.opendev.org/c/openstack/tempest/+/768583
                     cmd += ('--whitelist_file', list_file)
                 else:
                     self.logger.error("Test list is either empty or no valid "
@@ -922,8 +926,7 @@ def parse_cli_args(args=None):
                                   'specific test cases or test lists. '
                                   'Some examples are: -- --regex '
                                   'tempest.api.compute.images.'
-                                  'test_list_image_filters OR '
-                                  '-- --whitelist_file /tmp/testid-list.txt')
+                                  'test_list_image_filters')
     parser_test.set_defaults(func="test")
 
     # List command

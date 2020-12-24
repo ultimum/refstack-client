@@ -646,10 +646,12 @@ class TestRefstackClient(unittest.TestCase):
             sign_with='rsa_key'
         )
 
-    @mock.patch('refstack_client.list_parser.TestListParser.create_whitelist')
+    @mock.patch('refstack_client.list_parser.TestListParser.'
+                'create_include_list')
     @mock.patch('refstack_client.list_parser.'
                 'TestListParser.get_normalized_test_list')
-    def test_run_tempest_with_test_list(self, mock_normalize, mock_whitelist):
+    def test_run_tempest_with_test_list(self, mock_normalize,
+                                        mock_include_list):
         """Test that the Tempest script runs with a test list file."""
         argv = self.mock_argv(verbose='-vv')
         argv.extend(['--test-list', 'test-list.txt'])
@@ -666,12 +668,15 @@ class TestRefstackClient(unittest.TestCase):
         client._save_json_results = MagicMock()
         client.post_results = MagicMock()
         mock_normalize.return_value = '/tmp/some-list'
-        mock_whitelist.return_value = '/tmp/some-list'
+        mock_include_list.return_value = '/tmp/some-list'
         client._get_keystone_config = MagicMock(
             return_value=self.v2_config)
         client.test()
 
-        mock_whitelist.assert_called_with('test-list.txt')
+        mock_include_list.assert_called_with('test-list.txt')
+        # TODO(kopecmartin) rename the below argument when refstack-client
+        # uses tempest which contains the following change in its code:
+        # https://review.opendev.org/c/openstack/tempest/+/768583
         mock_popen.assert_called_with(
             ['%s/tools/with_venv.sh' % self.test_path, 'tempest', 'run',
              '--serial', '--concurrency', '0', '--whitelist_file',
@@ -903,8 +908,9 @@ class TestRefstackClient(unittest.TestCase):
         self.assertEqual(os.environ.get('TEMPEST_CONFIG_DIR'), conf_dir)
         self.assertEqual(os.environ.get('TEMPEST_CONFIG'), conf_file)
 
-    @mock.patch('refstack_client.list_parser.TestListParser.create_whitelist')
-    def test_run_tempest_with_empty_test_list(self, mock_whitelist):
+    @mock.patch('refstack_client.list_parser.TestListParser.'
+                'create_include_list')
+    def test_run_tempest_with_empty_test_list(self, mock_include_list):
         """Test that refstack-client can handle an empty test list file."""
         argv = self.mock_argv(verbose='-vv')
         argv.extend(['--test-list', 'foo.txt'])
@@ -918,7 +924,7 @@ class TestRefstackClient(unittest.TestCase):
         client.tempest_dir = self.test_path
         self.patch("os.path.isfile", return_value=True)
         empty_file = tempfile.NamedTemporaryFile()
-        mock_whitelist.return_value = empty_file.name
+        mock_include_list.return_value = empty_file.name
         self.assertRaises(SystemExit, client.test)
 
     def test_run_tempest_with_non_exist_test_list_file(self):

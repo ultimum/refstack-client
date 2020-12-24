@@ -191,9 +191,9 @@ class TestListParser(object):
         list_file = self._write_normalized_test_list(full_capability_test_ids)
         return list_file
 
-    def create_whitelist(self, list_location):
-        """This takes in a test list file, get normalized, and get whitelist
-        regexes using full qualified test names (one per line).
+    def create_include_list(self, list_location):
+        """This takes in a test list file, get normalized, and get list of
+        include regexes using full qualified test names (one per line).
         Ex:
           'tempest.test1[id-2,gate]' -> tempest.test1\[ # noqa: W605
           'tempest.test2[id-3,smoke](scenario)' -> tempest.test2\[ # noqa: W605

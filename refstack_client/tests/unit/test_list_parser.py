@@ -171,7 +171,7 @@ class TestTestListParser(unittest.TestCase):
         self.assertEqual(test_ids, testcase_list)
 
     @mock.patch.object(parser.TestListParser, "get_normalized_test_list")
-    def test_create_whitelist(self, mock_get_normalized):
+    def test_create_include_list(self, mock_get_normalized):
         """Test whether a test list is properly parsed to extract test names"""
         test_list = [
             "tempest.test.one[id-11111111-2222-3333-4444-555555555555,gate]",
@@ -188,5 +188,5 @@ class TestTestListParser(unittest.TestCase):
             [f.write(item + "\n") for item in test_list]
         mock_get_normalized.return_value = tmpfile
 
-        result = open(self.parser.create_whitelist(tmpfile)).read()
+        result = open(self.parser.create_include_list(tmpfile)).read()
         self.assertEqual(result, expected_list)
