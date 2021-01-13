@@ -698,7 +698,9 @@ class RefstackClient:
         public_key_file = '.'.join((private_key_file, 'pub'))
         try:
             with open(public_key_file) as pkf:
-                pub_key = pkf.read()
+                # Strip key comment at the end as it should not be included
+                pub_key_elements = pkf.read().split(' ')
+                pub_key = "%s %s" % (pub_key_elements[0], pub_key_elements[1])
         except IOError:
             self.logger.error('Public key file %s not found. '
                               'Public key is generated from private one.'
@@ -716,7 +718,7 @@ class RefstackClient:
         """Generate signature for public key."""
         pub_key, signature = self._sign_pubkey()
         print('Public key:\n%s\n' % pub_key)
-        print('Self signature:\n%s\n' % signature)
+        print('Self signature:\n%s\n' % str(signature, 'utf-8'))
 
 
 def parse_cli_args(args=None):
