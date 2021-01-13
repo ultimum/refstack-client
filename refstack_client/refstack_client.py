@@ -410,14 +410,16 @@ class RefstackClient:
                                      private_key_file)
                     self.logger.exception(e)
                     return
-            signer = private_key.signer(padding.PKCS1v15(), hashes.SHA256())
-            signer.update(data.encode('utf-8'))
-            signature = binascii.b2a_hex(signer.finalize())
+            signature = private_key.sign(
+                data.encode('utf-8'),
+                padding.PKCS1v15(),
+                hashes.SHA256()
+            )
             pubkey = private_key.public_key().public_bytes(
                 serialization.Encoding.OpenSSH,
                 serialization.PublicFormat.OpenSSH)
 
-            headers['X-Signature'] = signature
+            headers['X-Signature'] = binascii.b2a_hex(signature)
             headers['X-Public-Key'] = pubkey
         try:
             response = requests.post(endpoint,
@@ -709,10 +711,12 @@ class RefstackClient:
                 serialization.Encoding.OpenSSH,
                 serialization.PublicFormat.OpenSSH)
 
-        signer = private_key.signer(padding.PKCS1v15(), hashes.SHA256())
-        signer.update('signature'.encode('utf-8'))
-        signature = binascii.b2a_hex(signer.finalize())
-        return pub_key, signature
+        signature = private_key.sign(
+            'signature'.encode('utf-8'),
+            padding.PKCS1v15(),
+            hashes.SHA256()
+        )
+        return pub_key, binascii.b2a_hex(signature)
 
     def self_sign(self):
         """Generate signature for public key."""
