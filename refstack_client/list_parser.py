@@ -83,7 +83,7 @@ class TestListParser(object):
         """
         test_mappings = {}
         for testcase in test_list:
-            if testcase.startswith("tempest"):
+            if testcase != "":
                 # Search for any strings like '[smoke, gate]' in the test ID.
                 match = re.search(r'(\[.*\])', testcase)
 
