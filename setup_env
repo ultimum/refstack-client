@@ -1,7 +1,7 @@
 #!/bin/bash -x
 
-#Default Tempest commit: SHA 3ffa54e446ed2a8bf6758343a3130ae424d3ddc4 (Oct 2018)
-CHECKOUT_POINT=3ffa54e446ed2a8bf6758343a3130ae424d3ddc4
+#Default Tempest commit: SHA e64c78dcf720202a0542bb1e1184f5229a11524f (Oct 2019)
+CHECKOUT_POINT=e64c78dcf720202a0542bb1e1184f5229a11524f
 PY_VERSION="3.6.0"
 
 # Prints help
