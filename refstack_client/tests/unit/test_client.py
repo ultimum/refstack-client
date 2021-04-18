@@ -566,8 +566,7 @@ class TestRefstackClient(unittest.TestCase):
 
         mock_popen.assert_called_with(
             ['%s/tools/with_venv.sh' % self.test_path, 'tempest', 'run',
-             '--serial', '--concurrency', '0', '--regex',
-             'tempest.api.compute'],
+             '--serial', '--regex', 'tempest.api.compute'],
             stderr=None
         )
 
@@ -598,8 +597,7 @@ class TestRefstackClient(unittest.TestCase):
         client.test()
         mock_popen.assert_called_with(
             ['%s/tools/with_venv.sh' % self.test_path, 'tempest', 'run',
-             '--serial', '--concurrency', '0', '--regex',
-             'tempest.api.compute'],
+             '--serial', '--regex', 'tempest.api.compute'],
             stderr=None
         )
 
@@ -632,8 +630,7 @@ class TestRefstackClient(unittest.TestCase):
         client.test()
         mock_popen.assert_called_with(
             ['%s/tools/with_venv.sh' % self.test_path, 'tempest', 'run',
-             '--serial', '--concurrency', '0', '--regex',
-             'tempest.api.compute'],
+             '--serial', '--regex', 'tempest.api.compute'],
             stderr=None
         )
 
@@ -679,8 +676,7 @@ class TestRefstackClient(unittest.TestCase):
         # https://review.opendev.org/c/openstack/tempest/+/768583
         mock_popen.assert_called_with(
             ['%s/tools/with_venv.sh' % self.test_path, 'tempest', 'run',
-             '--serial', '--concurrency', '0', '--whitelist_file',
-             '/tmp/some-list'],
+             '--serial', '--whitelist_file', '/tmp/some-list'],
             stderr=None
         )
 
@@ -740,8 +736,7 @@ class TestRefstackClient(unittest.TestCase):
 
         mock_popen.assert_called_with(
             ['%s/tools/with_venv.sh' % self.test_path, 'tempest', 'run',
-             '--serial', '--concurrency', '0', '--regex',
-             'tempest.api.compute'],
+             '--serial', '--regex', 'tempest.api.compute'],
             stderr=None
         )
         # Since '1' is in the next-stream file, we expect the JSON output file
