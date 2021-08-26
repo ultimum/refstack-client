@@ -27,7 +27,7 @@ We've created an "easy button" for Ubuntu, Centos, RHEL and openSUSE.
    b. -t option allows to specify tag in Tempest repository which will be installed.
    For example: execute ``./setup_env -t tags/3`` to install Tempest tag-3.
    By default, Tempest will be installed from commit
-   e64c78dcf720202a0542bb1e1184f5229a11524f (Oct, 2019).
+   1d500e79156ada6bc6fdb628ed1da0efd4121f6a (Oct, 2019).
 
    c. -p option allows to specify python version - python 2.7 (-p 2), 3.6 (-p 3)
    or any specific one by -p X.X.X. Default to python 3.6.
