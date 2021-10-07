@@ -203,7 +203,6 @@ $python virtualenv.py ${TEMPEST_DIR}/.venv --python="${PYPATH}"
 
 cd ..
 rm -rf virtualenv-${VENV_VERSION}
-rm virtualenv-${VENV_VERSION}.tar.gz
 ${WORKDIR}/.venv/bin/python -m pip install -c ${UPPER_CONSTRAINTS_FILE} -e .
 cd ${TEMPESTCONF_DIR}
 ${WORKDIR}/.venv/bin/python -m pip install -c ${UPPER_CONSTRAINTS_FILE} -e .
