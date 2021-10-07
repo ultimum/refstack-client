@@ -3,6 +3,7 @@
 #Default Tempest commit: SHA 1d500e79156ada6bc6fdb628ed1da0efd4121f6a (Oct 2019)
 CHECKOUT_POINT=1d500e79156ada6bc6fdb628ed1da0efd4121f6a
 PY_VERSION="3.6.0"
+UPPER_CONSTRAINTS_FILE="https://releases.openstack.org/constraints/upper/master"
 
 # Prints help
 function usage {
@@ -203,11 +204,11 @@ $python virtualenv.py ${TEMPEST_DIR}/.venv --python="${PYPATH}"
 cd ..
 rm -rf virtualenv-${VENV_VERSION}
 rm virtualenv-${VENV_VERSION}.tar.gz
-${WORKDIR}/.venv/bin/python -m pip install -e .
+${WORKDIR}/.venv/bin/python -m pip install -c ${UPPER_CONSTRAINTS_FILE} -e .
 cd ${TEMPESTCONF_DIR}
-${WORKDIR}/.venv/bin/python -m pip install -e .
+${WORKDIR}/.venv/bin/python -m pip install -c ${UPPER_CONSTRAINTS_FILE} -e .
 cd ..
-${TEMPEST_DIR}/.venv/bin/python -m pip install ${TEMPEST_DIR}
+${TEMPEST_DIR}/.venv/bin/python -m pip install -c ${UPPER_CONSTRAINTS_FILE} ${TEMPEST_DIR}
 
 # Add additional packages to find more tests by tempest
 # Note: Since there are no requirements in tempest-additional-requirements.txt by default,
