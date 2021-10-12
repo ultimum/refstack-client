@@ -33,7 +33,7 @@ extensions = [
 ]
 
 # openstackdocstheme options
-repository_name = 'osf/refstack-client'
+openstackdocs_repo_name = 'osf/refstack-client'
 bug_project = '879'
 bug_tag = ''
 
@@ -105,7 +105,7 @@ pygments_style = 'sphinx'
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-html_theme = 'openstackdocs'
+html_theme = 'alabaster'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
