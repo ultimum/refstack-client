@@ -15,7 +15,7 @@ Environment setup
 We've created an "easy button" for Ubuntu, Centos, RHEL and openSUSE.
 
 1. Make sure you have ``git`` installed
-2. Get the refstack client: ``git clone https://opendev.org/osf/refstack-client.git``
+2. Get the refstack client: ``git clone https://opendev.org/openinfra/refstack-client.git``
 3. Go into the ``refstack-client`` directory: ``cd refstack-client``
 4. Run the "easy button" setup: ``./setup_env``
 
@@ -155,7 +155,7 @@ Usage
          -i <path-to-private-key>
 
    Intructions for uploading data with signature can be found at
-   https://opendev.org/osf/refstack/src/branch/master/doc/source/uploading_private_results.rst
+   https://opendev.org/openinfra/refstack/src/branch/master/doc/source/uploading_private_results.rst
 
 7. View uploaded test set.
 
@@ -195,7 +195,7 @@ The tests ``refstack-client`` runs are defined within interop_ repository
 and divided into several OpenStack Marketing Programs, the list of the programs
 can be found at RefStack_ page.
 
-.. _interop: https://opendev.org/osf/interop
+.. _interop: https://opendev.org/openinfra/interop
 .. _RefStack: https://refstack.openstack.org/#/
 
 

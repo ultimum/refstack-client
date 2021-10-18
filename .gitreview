@@ -1,4 +1,4 @@
 [gerrit]
 host=review.opendev.org
 port=29418
-project=osf/refstack-client.git
+project=openinfra/refstack-client.git
