@@ -7,4 +7,4 @@
         - opendev-tox-docs
     promote:
       jobs:
-        - opendev-tox-docs
+        - opendev-promote-docs
