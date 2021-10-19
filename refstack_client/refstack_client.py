@@ -66,7 +66,7 @@ def get_input():
 def read_accounts_yaml(path):
     """Reads a set of accounts from the specified file"""
     with open(path, 'r') as yaml_file:
-        accounts = yaml.load(yaml_file)
+        accounts = yaml.safe_load(yaml_file)
     return accounts
 
 
