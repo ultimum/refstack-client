@@ -1,9 +1,23 @@
 - project:
+    templates:
+      - openstack-cover-jobs
+      - openstack-python37-jobs
+      - openstack-python3-yoga-jobs
     check:
       jobs:
+        - refstack-client-devstack-master
+        - refstack-client-devstack-wallaby
+        - refstack-client-devstack-victoria
+        - refstack-client-devstack-ussuri
+        - refstack-client-devstack-train
         - opendev-tox-docs
     gate:
       jobs:
+        - refstack-client-devstack-master
+        - refstack-client-devstack-wallaby
+        - refstack-client-devstack-victoria
+        - refstack-client-devstack-ussuri
+        - refstack-client-devstack-train
         - opendev-tox-docs
     promote:
       jobs:
