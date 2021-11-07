@@ -5,19 +5,34 @@
       - openstack-python3-yoga-jobs
     check:
       jobs:
-        - refstack-client-devstack-master
-        - refstack-client-devstack-wallaby
-        - refstack-client-devstack-victoria
-        - refstack-client-devstack-ussuri
-        - refstack-client-devstack-train
+        - refstack-client-devstack-master:
+            # Define a list of irrelevant files to use everywhere else
+            irrelevant-files: &refstack-client-irrelevant-files
+              - ^.*\.rst$
+              - ^doc/.*$
+              - ^.gitignore$
+              - ^.gitreview$
+        - refstack-client-devstack-wallaby:
+            irrelevant-files: *refstack-client-irrelevant-files
+        - refstack-client-devstack-victoria:
+            irrelevant-files: *refstack-client-irrelevant-files
+        - refstack-client-devstack-ussuri:
+            irrelevant-files: *refstack-client-irrelevant-files
+        - refstack-client-devstack-train:
+            irrelevant-files: *refstack-client-irrelevant-files
         - opendev-tox-docs
     gate:
       jobs:
-        - refstack-client-devstack-master
-        - refstack-client-devstack-wallaby
-        - refstack-client-devstack-victoria
-        - refstack-client-devstack-ussuri
-        - refstack-client-devstack-train
+        - refstack-client-devstack-master:
+            irrelevant-files: *refstack-client-irrelevant-files
+        - refstack-client-devstack-wallaby:
+            irrelevant-files: *refstack-client-irrelevant-files
+        - refstack-client-devstack-victoria:
+            irrelevant-files: *refstack-client-irrelevant-files
+        - refstack-client-devstack-ussuri:
+            irrelevant-files: *refstack-client-irrelevant-files
+        - refstack-client-devstack-train:
+            irrelevant-files: *refstack-client-irrelevant-files
         - opendev-tox-docs
     promote:
       jobs:

@@ -209,6 +209,13 @@ integrated to an automation machinery - f.e. we use the role for running
 every OpenStack Marketing Program of the current guideline. The latest builds
 can be found here__.
 
-.. _ansible-role-refstack-client: https://opendev.org/x/ansible-role-refstack-client
+.. _ansible-role-refstack-client: https://opendev.org/openinfra/ansible-role-refstack-client
 .. _devstack: https://opendev.org/openstack/devstack/
-.. __builds: https://zuul.openstack.org/builds?project=x%2Fansible-role-refstack-client
+.. __builds: https://zuul.openstack.org/builds?project=openinfra%2Fansible-role-refstack-client
+
+Get Involved
+############
+
+See the `CONTRIBUTING <https://docs.opendev.org/openinfra/refstack-client/latest/contributing.html>`_
+guide on how to get involved.
+

@@ -10,6 +10,7 @@ About refstack-client
    :maxdepth: 2
 
    readme
+   contributing
 
 -----------------
 Approved Features
